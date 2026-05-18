@@ -4,9 +4,8 @@ FROM python:3.10-slim
 # Instale as dependências do sistema
 RUN apt-get update && apt-get install -y \
     build-essential \
-    python3-dev \
-    libatlas-base-dev \
     gfortran \
+    libopenblas-dev \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
@@ -18,6 +17,9 @@ COPY . .
 
 # Atualize o pip e instale as dependências do projeto
 RUN pip install --upgrade pip && pip install -r requirements.txt
+
+# Exponha a porta padrão do Flask
+EXPOSE 5000
 
 # Comando para iniciar o aplicativo
 CMD ["python", "app.py"]
