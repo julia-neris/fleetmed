@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+    <h1>Dashboard de Medições</h1>
+    <p class="small">Visão resumida da competência consolidada.</p>
+
+    <div class="grid">
+        <div class="kpi">
+            <span>Linhas</span>
+            <strong>{{ indicadores.linhas }}</strong>
+        </div>
+        <div class="kpi">
+            <span>Total enviado</span>
+            <strong>R$ {{ "{:,.2f}".format(indicadores.total_enviado).replace(",", "X").replace(".", ",").replace("X", ".") }}</strong>
+        </div>
+        <div class="kpi">
+            <span>Aceito</span>
+            <strong>R$ {{ "{:,.2f}".format(indicadores.aceito).replace(",", "X").replace(".", ",").replace("X", ".") }}</strong>
+        </div>
+        <div class="kpi">
+            <span>Recusado</span>
+            <strong>R$ {{ "{:,.2f}".format(indicadores.recusado).replace(",", "X").replace(".", ",").replace("X", ".") }}</strong>
+        </div>
+        <div class="kpi">
+            <span>Bloqueadas</span>
+            <strong>{{ indicadores.bloqueado }}</strong>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <h2>Próximas evoluções recomendadas</h2>
+    <p>Este MVP já valida, consolida e permite a validação das unidades. Para ambiente real, evoluir para banco de dados, autenticação corporativa, envio real de e-mails, calendário de bloqueio por data e integração SAP.</p>
+</div>
+{% endblock %}

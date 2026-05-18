@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+    <h1>Medições</h1>
+    <p class="small">Base consolidada com status do sistema e validação da unidade.</p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Status</th>
+                <th>Unidade</th>
+                <th>Placa</th>
+                <th>Tipo</th>
+                <th>Valor</th>
+                <th>Validação</th>
+                <th>Justificativa</th>
+                <th>Erro sistema</th>
+                {% if perfil in ["unidade", "admin", "lve"] %}
+                <th>Ação</th>
+                {% endif %}
+            </tr>
+        </thead>
+        <tbody>
+        {% for r in registros %}
+            <tr>
+                <td>
+                    {% if r.StatusSistema == "OK" %}
+                    <span class="badge ok">OK</span>
+                    {% else %}
+                    <span class="badge bloqueado">Bloqueado</span>
+                    {% endif %}
+                </td>
+                <td>{{ r.Unidade }}</td>
+                <td>{{ r.Placa }}</td>
+                <td>{{ r.TipoCobranca }}</td>
+                <td>R$ {{ r.Valor }}</td>
+                <td>
+                    {% if r.ValidacaoUnidade %}
+                        {{ r.ValidacaoUnidade }}
+                    {% else %}
+                        <span class="badge pendente">Pendente</span>
+                    {% endif %}
+                </td>
+                <td>{{ r.JustificativaUnidade }}</td>
+                <td>{{ r.ErroSistema }}</td>
+                {% if perfil in ["unidade", "admin", "lve"] %}
+                <td>
+                    {% if r.StatusSistema == "OK" %}
+                    <form method="post" action="{{ url_for('validar', id=r.ID) }}">
+                        <select name="validacao" required>
+                            <option value="">Selecionar</option>
+                            <option value="SIM">SIM</option>
+                            <option value="NAO">NÃO</option>
+                        </select>
+                        <br><br>
+                        <textarea name="justificativa" placeholder="Justificativa obrigatória se NÃO"></textarea>
+                        <br><br>
+                        <button>Salvar</button>
+                    </form>
+                    {% else %}
+                    Linha bloqueada
+                    {% endif %}
+                </td>
+                {% endif %}
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,3 @@
+﻿ID,FornecedorUsuario,CNPJ,RazaoSocial,Unidade,Placa,TipoCobranca,Valor,Competencia,Descricao,StatusSistema,ErroSistema,ValidacaoUnidade,JustificativaUnidade,DataUpload,DataValidacao
+8a28015b-a75c-4945-b491-876e12e30b14,fornecedor1,00000000000100,FORNECEDOR MODELO LTDA,UNIDADE MODELO,ABC1D23,ARRENDAMENTO,3500.0,04/2026,Arrendamento mensal,BLOQUEADO,"Valor de arrendamento divergente do contrato. Contrato: R$ 35,000.00",,,2026-05-18 09:11:17,
+9bf3c47a-0740-47b7-a547-1c5bfbf5dee1,fornecedor1,00000000000100,FORNECEDOR MODELO LTDA,UNIDADE MODELO,XYZ9A88,MANUTENCAO,7805.0,04/2026,Manutenção preventiva,OK,,,,2026-05-18 09:11:17,

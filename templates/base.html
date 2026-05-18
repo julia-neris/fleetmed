@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>FleetMed MVP</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+{% if session.get("usuario") %}
+<header>
+    <div>
+        <strong>FleetMed MVP</strong>
+        <div class="small" style="color:white;">Usuário: {{ session.get("usuario") }} | Perfil: {{ session.get("perfil") }}</div>
+    </div>
+    <nav>
+        <a href="{{ url_for('dashboard') }}">Dashboard</a>
+        <a href="{{ url_for('medicoes') }}">Medições</a>
+        {% if session.get("perfil") in ["fornecedor", "admin", "lve"] %}
+        <a href="{{ url_for('upload') }}">Upload</a>
+        {% endif %}
+        <a href="{{ url_for('modelo') }}">Modelo Excel</a>
+        {% if session.get("perfil") in ["admin", "lve"] %}
+        <a href="{{ url_for('exportar') }}">Exportar</a>
+        {% endif %}
+        <a href="{{ url_for('logout') }}">Sair</a>
+    </nav>
+</header>
+{% endif %}
+
+<div class="container">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+        <div class="flash {{ category }}">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+    {% endwith %}
+
+    {% block content %}{% endblock %}
+</div>
+</body>
+</html>

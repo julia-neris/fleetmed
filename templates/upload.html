@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+    <h1>Upload de Medição</h1>
+    <p class="small">Envie a planilha padrão preenchida pelo fornecedor.</p>
+
+    <form method="post" enctype="multipart/form-data">
+        <input type="file" name="arquivo" accept=".xlsx,.xls" required>
+        <br><br>
+        <button>Enviar medição</button>
+    </form>
+
+    <br>
+    <a class="btn secondary" href="{{ url_for('modelo') }}">Baixar modelo Excel</a>
+</div>
+{% endblock %}

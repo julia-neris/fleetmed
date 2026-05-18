@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="login card">
+    <h1>FleetMed</h1>
+    <p class="small">Sistema de Medição de Custos de Frotas</p>
+    <form method="post">
+        <label>Usuário</label><br><br>
+        <input name="usuario" required>
+        <br><br>
+        <label>Senha</label><br><br>
+        <input type="password" name="senha" required>
+        <br><br>
+        <button>Entrar</button>
+    </form>
+    <hr>
+    <p class="small">
+        Testes: admin/admin123, fornecedor1/forn123, unidade1/uni123, lve/lve123
+    </p>
+</div>
+{% endblock %}
